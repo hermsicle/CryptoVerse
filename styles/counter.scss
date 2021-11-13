@@ -1,0 +1,12 @@
+@import "./globals.scss";
+
+.counter-page {
+  width: 100%;
+}
+.counter-inner {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+  border: $border;
+  padding: 1rem;
+}

@@ -1,0 +1,49 @@
+$border: 1px solid black;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$border: 1px solid black;
+
+.section {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: $border;
+}
+
+.cryptos-container {
+  border: $border;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  .crypto-card {
+    display: flex;
+    width: 300px;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+    border: $border;
+    cursor: pointer;
+    margin: 0.5rem;
+  }
+}
