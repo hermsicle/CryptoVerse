@@ -1,4 +1,6 @@
 $border: 1px solid black;
+$bg: rgba(0, 0, 0, 0.8);
+$transition: all 250ms ease-in-out;
 
 html,
 body {
@@ -6,6 +8,15 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(89, 0, 255, 0.9248074229691877) 51%,
+  //   rgba(161, 0, 163, 1) 100%
+  // );
+  // background: url('/images/bg-1.png');
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: cover;
 }
 
 a {
@@ -21,12 +32,44 @@ a {
 
 $border: 1px solid black;
 
+.banner {
+  width: 100%;
+  background: $bg;
+  color: #fff;
+}
+
 .section {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 1rem;
   border: $border;
+}
+
+.button-1 {
+  padding: 10px 25px;
+  border: 1px solid white;
+  color: #fff;
+  background: $bg;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.header {
+  background: $bg;
+  width: 100%;
+  color: white;
+  .nav-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .header-links {
+      a {
+        margin: 0.5rem;
+        font-size: 18px;
+      }
+    }
+  }
 }
 
 .cryptos-container {
@@ -37,13 +80,34 @@ $border: 1px solid black;
   justify-content: center;
   position: relative;
   .crypto-card {
-    display: flex;
+    height: 70px;
     width: 300px;
-    padding: 1rem;
-    flex-direction: column;
+    margin: 1rem;
+    display: flex;
+    border: 1px solid white;
     align-items: center;
-    border: $border;
+    padding: 1rem;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    color: white;
     cursor: pointer;
-    margin: 0.5rem;
+    transition: $transition;
+    transform: scale(1);
+    &:hover {
+      transform: scale(1.1);
+    }
+    .overlay {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background: $bg;
+      left: 0;
+    }
+    .crypto-name {
+      margin-left: 0.5rem;
+      z-index: 2;
+      padding: 0.4rem;
+    }
   }
 }

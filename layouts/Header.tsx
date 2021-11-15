@@ -1,17 +1,21 @@
-import React from 'react'
-import Link from 'next/link'
-
+import React from 'react';
+import Link from 'next/link';
+import Section from '../components/Section';
 const Header = () => {
   return (
     <div className="header">
-      <div className="logo">CryptoVerseV2</div>
-      <div className="header-links">
-        <Link href="/"> Home </Link>
-        <Link href="/cryptos"> Cryptos </Link>
-        <Link href="/news"> News </Link>
-      </div>
+      <Section>
+        <div className="nav-bar-inner">
+          <h1>CryptoVerseV2</h1>
+          <div className="header-links">
+            <Link href="/"> Home </Link>
+            <Link href="/news"> News </Link>
+            <Link href="/top-100"> Top-Coins </Link>
+          </div>
+        </div>
+      </Section>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

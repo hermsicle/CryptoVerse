@@ -1,3 +1,3 @@
-import { getCryptos, getTop100 } from './apis';
+import { getCryptos } from './apis';
 
-export { getCryptos, getTop100 };
+export { getCryptos };

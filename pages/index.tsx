@@ -1,10 +1,15 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.scss";
-import HomeLayout from '../layouts/Home'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import HomeLayout from '../layouts/Home';
+import Cryptos from '../containers/Cryptos';
+import Link from 'next/link';
+import React from 'react';
+import { API_URL } from '../constants/constants';
+import Section from '../components/Section';
+import Banner from '../components/Banner';
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ coins }: any) => {
+  const { apiBaseUrl } = API_URL;
   return (
     <div>
       <Head>
@@ -14,8 +19,41 @@ const Home: NextPage = () => {
       </Head>
 
       <HomeLayout />
+      <Section>
+        <div className="cryptos-container">
+          {coins?.map(({ CoinInfo, DISPLAY, RAW }: any) => (
+            <div className="coin" key={CoinInfo.Id}>
+              <Link href={`/cryptos/${CoinInfo.Name}`} passHref>
+                <div>
+                  <Cryptos
+                    fullName={CoinInfo.FullName}
+                    img={`${apiBaseUrl + CoinInfo.ImageUrl}`}
+                    abbreviation={CoinInfo.Name}
+                  />
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <Link href="/top-100" passHref>
+          <button className="button-1"> View Top 100 </button>
+        </Link>
+      </Section>
     </div>
   );
 };
 
 export default Home;
+
+const API_KEY = `&api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+const cryptoURL: string = `https://min-api.cryptocompare.com/data/top/mktcapfull?tsym=USD`;
+
+export const getStaticProps = async () => {
+  const res = await fetch(`${cryptoURL}&limit=10${API_KEY}`);
+  const { Data } = await res.json();
+  return {
+    props: {
+      coins: Data,
+    },
+  };
+};

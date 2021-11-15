@@ -1,14 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Section from '../components/Section';
-import CryptosContainer from '../containers/CryptosContainer';
+import Banner from '../components/Banner';
 
 const HomeLayout: FC = () => {
   return (
     <Section>
-      <h1> CryptoVerse App V2 </h1>
-      <p> Created by: Hermsicles</p>
-      <h4>Top 10 Market Cap</h4>
-      <CryptosContainer count={10} />
+      <h1>Top 10 Cryptocurrencies by Market Cap</h1>
     </Section>
   );
 };
