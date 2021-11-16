@@ -21,7 +21,7 @@ const Home: NextPage = ({ coins }: any) => {
       <HomeLayout />
       <Section>
         <div className="cryptos-container">
-          {coins?.map(({ CoinInfo, DISPLAY, RAW }: any) => (
+          {coins?.map(({ CoinInfo, DISPLAY }: any, i: number) => (
             <div className="coin" key={CoinInfo.Id}>
               <Link href={`/cryptos/${CoinInfo.Name}`} passHref>
                 <div>
@@ -29,6 +29,10 @@ const Home: NextPage = ({ coins }: any) => {
                     fullName={CoinInfo.FullName}
                     img={`${apiBaseUrl + CoinInfo.ImageUrl}`}
                     abbreviation={CoinInfo.Name}
+                    price={DISPLAY?.USD.PRICE}
+                    marketCap={DISPLAY?.USD.MKTCAP}
+                    dailyChange={DISPLAY?.USD.CHANGEPCT24HOUR}
+                    number={i}
                   />
                 </div>
               </Link>

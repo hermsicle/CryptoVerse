@@ -5,16 +5,38 @@ type CryptoProps = {
   fullName: string;
   img: string;
   abbreviation: string;
+  price?: string;
+  marketCap?: string;
+  dailyChange?: string;
+  number?: number;
 };
 
-const Cryptos = ({ fullName, img, abbreviation }: CryptoProps) => {
+const Cryptos = ({
+  fullName,
+  img,
+  abbreviation,
+  price,
+  marketCap,
+  dailyChange,
+  number,
+}: CryptoProps) => {
   return (
     <div className="crypto-card">
       <div className="overlay"></div>
-      <Image src={img} alt="crypto" height="50px" width="50px" />
-      <div className="crypto-name">
-        <h4>{fullName}</h4>
-        <h4>{abbreviation}</h4>
+      <div className="card-upper">
+        <div className="crypto-name">
+          <h4>
+            {number}. <span></span>
+            {fullName}
+          </h4>
+        </div>
+        <Image src={img} alt="crypto" height="35px" width="35px" />
+      </div>
+
+      <div className="card-lower">
+        <p> Price: {price} </p>
+        <p> Market Cap: {marketCap} </p>
+        <p> Daily Change: {dailyChange} % </p>
       </div>
     </div>
   );

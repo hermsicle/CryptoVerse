@@ -9,7 +9,7 @@ const Top100 = ({ coins }: any) => {
     <Section>
       <h1> Top 100 Crypto Currency by Market Cap </h1>
       <div className="cryptos-container">
-        {coins?.map(({ CoinInfo, DISPLAY, RAW }: any) => (
+        {coins?.map(({ CoinInfo, DISPLAY }: any, i: number) => (
           <div className="coin" key={CoinInfo.Id}>
             <Link href={`/cryptos/${CoinInfo.Name}`} passHref>
               <div>
@@ -17,6 +17,10 @@ const Top100 = ({ coins }: any) => {
                   fullName={CoinInfo.FullName}
                   img={`${apiBaseUrl + CoinInfo.ImageUrl}`}
                   abbreviation={CoinInfo.Name}
+                  price={DISPLAY?.USD.PRICE}
+                  marketCap={DISPLAY?.USD.MKTCAP}
+                  dailyChange={DISPLAY?.USD.CHANGEPCT24HOUR}
+                  number={i}
                 />
               </div>
             </Link>
