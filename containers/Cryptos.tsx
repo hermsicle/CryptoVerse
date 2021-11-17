@@ -8,7 +8,7 @@ type CryptoProps = {
   price?: string;
   marketCap?: string;
   dailyChange?: string;
-  number?: number;
+  number: number;
 };
 
 const Cryptos = ({
@@ -26,7 +26,7 @@ const Cryptos = ({
       <div className="card-upper">
         <div className="crypto-name">
           <h4>
-            {number}. <span></span>
+            {number + 1}. <span></span>
             {fullName}
           </h4>
         </div>

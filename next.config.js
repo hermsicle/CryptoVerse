@@ -5,6 +5,6 @@ module.exports = {
     BASE_URL: process.env.BASE_URL,
   },
   images: {
-    domains: ['www.cryptocompare.com'],
+    domains: ['www.cryptocompare.com', 'images.cryptocompare.com'],
   },
 }
