@@ -1,39 +1,39 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2'
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const LineChart = () => {
+type History = {
+  date: number,
+  $: number
+}
 
-  const coinPrice = []
-  const coinTimeStamp = []
+const LineChart = ({ history }: any) => {
+  const chartData = history?.Data
+  const data: [] = []
+  // console.log(chartData)
 
-  const data = {
-    labels: ['', '', '', '', ''],
-    datasets: [
-      {
-        label: "Price in USD",
-        data: [1,2,3,4,5,6],
-        fill: false,
-        backgroundColor: '#0071bd',
-        borderColor: '#0071bd'
-      }
-    ]
-  }
-
-  const options = {
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true 
-          }
-        }
-      ]
-    }
-  }
+  chartData.map((d: any) => {
+    const historyObj: History = {date: d.time, $: d.open}
+    return data.push(historyObj)
+  })
 
   return (
-    <div>
-      {/* <Line data={data} options={options} className="line-chart"/> */}
+    <div className="chart-container">
+    <ResponsiveContainer width="100%" height="100%">
+        <AreaChart
+          data={data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+          >
+          <XAxis dataKey="date" allowDecimals tickLine={false}/>
+          <YAxis tickLine={false} tickCount={10}/>
+          <Tooltip />
+          <Area type="monotone" dataKey="$" stroke="#c9c8c8" fill="#100a7da9" />
+        </AreaChart>
+      </ResponsiveContainer>
     </div>
   )
 }

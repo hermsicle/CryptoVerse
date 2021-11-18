@@ -1,18 +1,23 @@
 import Cryptos from '../../containers/Cryptos';
 import { API_URL } from '../../constants/constants';
-import { json } from 'stream/consumers';
 import LineChart from '../../components/LineChart';
 import Section from '../../components/Section';
+import Stats from '../../components/Stats';
 
-const CryptoDetails = ({ crypto }: any) => {
+const CryptoDetails = ({ crypto, history }: any) => {
   const { apiBaseUrl } = API_URL;
-
-  console.log(crypto);
+  const {Data} = history
 
   return (
     <Section>
-      <h1> COIN: </h1>
-      <LineChart />
+      <h2> Crypto: </h2>
+      <LineChart 
+        history= {Data}
+      />
+      <Stats  
+        stats= {crypto}
+      />
+
     </Section>
   );
 };
@@ -37,18 +42,21 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.coinId;
-  console.log(id);
 
   const res = await fetch(
     `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${id}&tsyms=USD${API_KEY}`
   );
   const data = await res.json();
 
-  // console.log(data);
+  const res2 = await fetch(
+    `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${id}&tsym=USD&limit=200${API_KEY}`
+  )
+  const historyData = await res2.json();
 
   return {
     props: {
       crypto: data,
+      history: historyData,
     },
   };
 };
